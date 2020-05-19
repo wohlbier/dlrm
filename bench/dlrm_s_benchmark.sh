@@ -12,12 +12,12 @@ else
 fi
 #echo $dlrm_extra_option
 
-cpu=1
+cpu=0
 gpu=1
 pt=1
-c2=1
+c2=0
 
-ncores=28 #12 #6
+ncores=24 #12 #6
 nsockets="0"
 
 ngpus="1 2 4 8"
