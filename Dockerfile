@@ -15,3 +15,5 @@ RUN pip install -r requirements.txt
 
 WORKDIR /code
 ADD . .
+
+ENTRYPOINT ["/bin/bash"]
