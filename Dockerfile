@@ -9,5 +9,5 @@ FROM ${FROM_IMAGE_NAME}
 ADD requirements.txt .
 RUN pip install -r requirements.txt
 
-WORKDIR /code
+WORKDIR /code/train
 ADD . .
