@@ -20,14 +20,15 @@ dlrm_pt_bin="python dlrm_s_pytorch.py"
 dlrm_c2_bin="python dlrm_s_caffe2.py"
 
 #PRE="CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
-PRE="CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7"
+#PRE="CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7"
+PRE="CUDA_VISIBLE_DEVICES=8,9,10,11,12,13,14,15"
 dlrm_extra_option="--use-gpu"
 
 echo "run pytorch ..."
 # WARNING: the following parameters will be set based on the data set
 # --arch-embedding-size=... (sparse feature sizes)
 # --arch-mlp-bot=... (the input to the first layer of bottom mlp)
-cmd="$PRE $dlrm_pt_bin --arch-sparse-feature-size=64 --arch-mlp-bot="13-512-256-64" --arch-mlp-top="512-512-256-1" --max-ind-range=10000000 --data-generation=dataset --data-set=terabyte --raw-data-file=$DATA_PATH/day --processed-data-file=$DATA_PATH/terabyte_processed.npz --loss-function=bce --round-targets=True --learning-rate=0.1 --mini-batch-size=2048 --print-freq=1024 --print-time --test-mini-batch-size=16384 --test-num-workers=16 --memory-map --data-sub-sample-rate=0.875 $dlrm_extra_option 2>&1 | tee ./log/run_terabyte_pt.log"
+cmd="$PRE $dlrm_pt_bin --arch-sparse-feature-size=64 --arch-mlp-bot="13-512-256-64" --arch-mlp-top="512-512-256-1" --max-ind-range=10000000 --data-generation=dataset --data-set=terabyte --raw-data-file=$DATA_PATH/day --processed-data-file=$DATA_PATH/terabyte_processed.npz --loss-function=bce --round-targets=True --learning-rate=0.1 --mini-batch-size=2048 --print-freq=1024 --print-time --test-mini-batch-size=16384 --test-num-workers=16 --memory-map --data-sub-sample-rate=0.875 --mlperf-logging --test-freq=10240 $dlrm_extra_option 2>&1 | tee ./log/run_terabyte_pt.log"
 echo $cmd
 eval $cmd
 
