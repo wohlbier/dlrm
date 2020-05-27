@@ -1,7 +1,7 @@
 # jgw
 ```
 docker build --rm --build-arg PROXY=$http_proxy --pull -t dlrm_train .
-nvidia-docker run -v /raid/user-scratch/jgwohlbier/mlperf/data/recommendation:/data -v $(pwd)/log:/code/log --rm -it dlrm_train
+nvidia-docker run -v /raid/user-scratch/jgwohlbier/mlperf/data/recommendation:/data -v $(pwd)/log:/code/train/log --rm -it dlrm_train
 ```
 
 
