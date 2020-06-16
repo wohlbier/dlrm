@@ -1214,6 +1214,25 @@ if __name__ == "__main__":
         for param in dlrm.parameters():
             print(param.detach().cpu().numpy())
 
+    if not (args.save_model == ""):
+        print("Saving model to {}".format(args.save_model))
+        torch.save(
+            {
+                "epoch": k,
+                "nepochs": args.nepochs,
+                "nbatches": nbatches,
+                "nbatches_test": nbatches_test,
+                "iter": j + 1,
+                "state_dict": dlrm.state_dict(),
+                "train_acc": gA,
+                "train_loss": gL,
+                "total_loss": total_loss,
+                "total_accu": total_accu,
+                "opt_state_dict": optimizer.state_dict(),
+            },
+            args.save_model,
+        )
+
     # export the model in onnx
     if args.save_onnx:
         with open("dlrm_s_pytorch.onnx", "w+b") as dlrm_pytorch_onnx_file:
