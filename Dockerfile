@@ -12,7 +12,6 @@ ENV https_proxy $PROXY
 
 ADD requirements.txt .
 RUN pip install -r requirements.txt
-
 WORKDIR /code/train
 ADD . .
 
