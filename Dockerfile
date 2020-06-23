@@ -10,6 +10,9 @@ ARG PROXY
 ENV http_proxy $PROXY
 ENV https_proxy $PROXY
 
+RUN apt update && apt install -y \
+    numactl
+
 ADD requirements.txt .
 RUN pip install -r requirements.txt
 WORKDIR /code/train

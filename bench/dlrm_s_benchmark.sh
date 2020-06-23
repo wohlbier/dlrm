@@ -12,8 +12,8 @@ else
 fi
 #echo $dlrm_extra_option
 
-cpu=0
-gpu=1
+cpu=1
+gpu=0
 pt=1
 c2=0
 
@@ -56,6 +56,7 @@ _args=" --num-batches="${nbatches}\
 " --numpy-rand-seed="${rand_seed}\
 " --print-freq="${print_freq}\
 " --print-time"\
+" --save-model=/data/model/small.pt"\
 " --enable-profiling "
 
 c2_args=" --caffe2-net-type="${c2_net}
@@ -67,12 +68,13 @@ if [ $cpu = 1 ]; then
   echo "CPU Benchmarking - running on $ncores cores"
   echo "--------------------------------------------"
   if [ $pt = 1 ]; then
-    outf="model1_CPU_PT_$ncores.log"
+    #outf="model1_CPU_PT_$ncores.log"
+    outf="./log/small_CPU_PT_$ncores.log"
     outp="dlrm_s_pytorch.prof"
     echo "-------------------------------"
     echo "Running PT (log file: $outf)"
     echo "-------------------------------"
-    cmd="$numa_cmd $dlrm_pt_bin --mini-batch-size=$mb_size --test-mini-batch-size=$tmb_size --test-num-workers=$tnworkers $_args $dlrm_extra_option > $outf"
+    cmd="$numa_cmd $dlrm_pt_bin --mini-batch-size=$mb_size --test-mini-batch-size=$tmb_size --test-num-workers=$tnworkers $_args $dlrm_extra_option 2>&1 | tee $outf"
     echo $cmd
     eval $cmd
     min=$(grep "iteration" $outf | awk 'BEGIN{best=999999} {if (best > $7) best=$7} END{print best}')
