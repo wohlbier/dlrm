@@ -874,13 +874,16 @@ if __name__ == "__main__":
         ld_k = ld_model["epoch"]
         ld_nepochs = ld_model["nepochs"]
         ld_nbatches = ld_model["nbatches"]
-        ld_nbatches_test = ld_model["nbatches_test"]
+        #ld_nbatches_test = ld_model["nbatches_test"]
+        ld_nbatches_test = ld_nbatches # jgw
         ld_gA = ld_model["train_acc"]
         ld_gL = ld_model["train_loss"]
         ld_total_loss = ld_model["total_loss"]
         ld_total_accu = ld_model["total_accu"]
-        ld_gA_test = ld_model["test_acc"]
-        ld_gL_test = ld_model["test_loss"]
+        #ld_gA_test = ld_model["test_acc"]
+        ld_gA_test = ld_gA # jgw
+        #ld_gL_test = ld_model["test_loss"]
+        ld_gL_test = ld_gL # jgw
         if not args.inference_only:
             optimizer.load_state_dict(ld_model["opt_state_dict"])
             best_gA_test = ld_gA_test
@@ -1235,7 +1238,6 @@ if __name__ == "__main__":
                 "epoch": k,
                 "nepochs": args.nepochs,
                 "nbatches": nbatches,
-                "nbatches_test": nbatches_test,
                 "iter": j + 1,
                 "state_dict": dlrm.state_dict(),
                 "train_acc": gA,
