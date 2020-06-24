@@ -16,7 +16,7 @@ cpu=1
 gpu=0
 pt=1
 
-ncores=24 #12 #6
+ncores=1 #24 #12 #6
 nsockets="0"
 
 ngpus="1 2 4 8"
@@ -30,7 +30,7 @@ rand_seed=727
 
 #Model param
 mb_size=2048 #1024 #512 #256
-nbatches=1000 #500 #100
+nbatches=100 #1000 #500 #100
 bot_mlp="512-512-64"
 top_mlp="1024-1024-1024-1"
 emb_size=64
@@ -54,6 +54,7 @@ _args=" --num-batches="${nbatches}\
 " --print-time"\
 " --load-model=/data/model/small.pt"\
 " --inference-only"\
+" --plot-compute-graph"\
 " --enable-profiling "
 
 # CPU Benchmarking
@@ -62,13 +63,12 @@ if [ $cpu = 1 ]; then
   echo "CPU Benchmarking - running on $ncores cores"
   echo "--------------------------------------------"
   if [ $pt = 1 ]; then
-    #outf="model1_CPU_PT_$ncores.log"
     outf="./log/small_CPU_PT_$ncores.log"
-    outp="dlrm_s_pytorch.prof"
+    outp="./log/dlrm_s_pytorch.prof"
     echo "-------------------------------"
     echo "Running PT (log file: $outf)"
     echo "-------------------------------"
-    cmd="$numa_cmd $dlrm_pt_bin --mini-batch-size=$mb_size --test-mini-batch-size=$tmb_size --test-num-workers=$tnworkers $_args $dlrm_extra_option"
+    cmd="$numa_cmd $dlrm_pt_bin --mini-batch-size=$mb_size --test-mini-batch-size=$tmb_size --test-num-workers=$tnworkers $_args $dlrm_extra_option > $outf"
     echo $cmd
     eval $cmd
     min=$(grep "iteration" $outf | awk 'BEGIN{best=999999} {if (best > $7) best=$7} END{print best}')

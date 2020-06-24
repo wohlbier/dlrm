@@ -87,7 +87,7 @@ from tricks.md_embedding_bag import PrEmbeddingBag, md_solver
 
 import sklearn.metrics
 
-# from torchviz import make_dot
+from torchviz import make_dot # jgw
 # import torch.nn.functional as Functional
 # from torch.nn.parameter import Parameter
 
@@ -1209,21 +1209,21 @@ if __name__ == "__main__":
 
     # profiling
     if args.enable_profiling:
-        with open("dlrm_s_pytorch.prof", "w") as prof_f:
+        with open("./log/dlrm_s_pytorch.prof", "w") as prof_f:
             prof_f.write(prof.key_averages().table(sort_by="cpu_time_total"))
-            prof.export_chrome_trace("./dlrm_s_pytorch.json")
+            prof.export_chrome_trace("./log/dlrm_s_pytorch.json")
         # print(prof.key_averages().table(sort_by="cpu_time_total"))
 
     # plot compute graph
     if args.plot_compute_graph:
-        sys.exit(
-            "ERROR: Please install pytorchviz package in order to use the"
-            + " visualization. Then, uncomment its import above as well as"
-            + " three lines below and run the code again."
-        )
-        # V = Z.mean() if args.inference_only else E
-        # dot = make_dot(V, params=dict(dlrm.named_parameters()))
-        # dot.render('dlrm_s_pytorch_graph') # write .pdf file
+        #sys.exit(
+        #    "ERROR: Please install pytorchviz package in order to use the"
+        #    + " visualization. Then, uncomment its import above as well as"
+        #    + " three lines below and run the code again."
+        #)
+        V = Z.mean() if args.inference_only else E
+        dot = make_dot(V, params=dict(dlrm.named_parameters()))
+        dot.render('./log/dlrm_s_pytorch_graph') # write .pdf file
 
     # test prints
     if not args.inference_only and args.debug_mode:
