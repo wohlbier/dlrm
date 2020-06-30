@@ -16,7 +16,7 @@ cpu=1
 gpu=0
 pt=1
 
-ncores=1 #24 #12 #6
+ncores=4 #24 #12 #6
 nsockets="0"
 
 ngpus="1 2 4 8"
@@ -30,7 +30,7 @@ rand_seed=727
 
 #Model param
 mb_size=2048 #1024 #512 #256
-nbatches=100 #1000 #500 #100
+nbatches=1000 #500 #100
 bot_mlp="512-512-64"
 top_mlp="1024-1024-1024-1"
 emb_size=64

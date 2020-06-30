@@ -609,7 +609,6 @@ if __name__ == "__main__":
         m_den = train_data.m_den
         ln_bot[0] = m_den
     else:
-        print("jgw: making random data")
         # input and target at random
         ln_emb = np.fromstring(args.arch_embedding_size, dtype=int, sep="-")
         m_den = ln_bot[0]
