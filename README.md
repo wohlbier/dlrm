@@ -374,6 +374,8 @@ pydot (*optional*)
 
 torchviz (*optional*)
 
+tqdm
+
 
 License
 -------
