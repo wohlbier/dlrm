@@ -1004,6 +1004,9 @@ def getCriteoAdData(
                         list(map(lambda x: int(x, 16), line[14:])),
                         dtype=np.int32
                     )
+
+                # jgw. count unique entries in a row by using a dict with
+                # key as row value.
                 # count uniques
                 for j in range(26):
                     convertDicts[j][X_cat[i][j]] = 1
