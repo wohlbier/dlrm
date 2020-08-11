@@ -19,9 +19,9 @@ fi
 dlrm_pt_bin="python dlrm_s_pytorch.py"
 dlrm_c2_bin="python dlrm_s_caffe2.py"
 
-#PRE="CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+PRE="CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
 #PRE="CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7"
-PRE="CUDA_VISIBLE_DEVICES=8,9,10,11,12,13,14,15"
+#PRE="CUDA_VISIBLE_DEVICES=8,9,10,11,12,13,14,15"
 dlrm_extra_option="--use-gpu"
 
 echo "run pytorch ..."
